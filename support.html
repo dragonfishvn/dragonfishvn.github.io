@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — DragonFish</title>
+  <meta name="description" content="Support and FAQ for DragonFish — Xiangqi Engine iOS app." />
+  <meta name="theme-color" content="#0f0803" />
+  <link rel="icon" type="image/png" href="assets/icon/AppIcon-1024.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="assets/icon/AppIcon-1024.png" alt="DragonFish icon" />
+    <span class="nav-brand-name">DragonFish</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="index.html#download" class="nav-cta">Download</a></li>
+  </ul>
+</nav>
+
+<!-- ====== PAGE HERO ====== -->
+<div class="page-hero">
+  <h1>Support</h1>
+  <p>Frequently asked questions and contact information</p>
+</div>
+
+<!-- ====== CONTENT ====== -->
+<div class="page-content">
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Does DragonFish require an internet connection?</div>
+    <p class="faq-a">
+      No. DragonFish runs entirely offline. The AI engine, board recognition,
+      and all game data are stored locally on your device. You only need a connection
+      to download the app.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I change the engine thinking time?</div>
+    <p class="faq-a">
+      In the game screen, tap the brain icon in the toolbar to reveal the thinking-time
+      bar. Use the − and + buttons to adjust from 1 to 10 seconds per move. The setting
+      is saved automatically.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does the Board Capture (photo recognition) work?</div>
+    <p class="faq-a">
+      Tap "Chụp Bàn Cờ" from the home screen and take or upload a photo of a physical
+      Xiangqi board. The app uses an on-device YOLOv8 model to detect pieces, then maps
+      them to board coordinates. For best results, shoot from directly above with even
+      lighting and minimal glare.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What does the "Beta" badge on Capture mean?</div>
+    <p class="faq-a">
+      Board recognition is actively being improved. It works well on standard piece sets
+      under good lighting, but may struggle with unusual piece designs, poor lighting,
+      or extreme angles. We'd love your feedback if you encounter issues.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I undo moves during a game?</div>
+    <p class="faq-a">
+      Yes. Tap the ← arrow in the toolbar to undo. In human-vs-computer mode, undo
+      steps back two plies (your move and the engine's reply). Tap → to redo.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I set up a custom position?</div>
+    <p class="faq-a">
+      In either Train or Deep Analysis mode, tap the pencil (✏) icon in the toolbar
+      to enter Position Edit mode. Drag pieces from the palette onto the board,
+      or drag pieces already on the board to move or remove them. Tap Done when
+      finished — the engine will analyse or play from your custom position.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the engine strength?</div>
+    <p class="faq-a">
+      DragonFish uses a state-of-the-art NNUE engine built specifically for Xiangqi (Chinese Chess).
+      On a real iPhone it achieves around 78,000 nodes per second and reaches depth 17+
+      in 3 seconds. It is significantly stronger than any human player.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do Hearts work?</div>
+    <p class="faq-a">
+      Hearts are the in-app currency used to start games. You begin with 10 hearts.
+      Each game start costs 1 heart. You can earn hearts by watching a short video ad
+      (+3) or by claiming your daily reward. Once you accumulate more than 50 hearts
+      you become permanently exempt from video prompts.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I switch the app language?</div>
+    <p class="faq-a">
+      On the main menu, tap the flag/language button in the top bar to cycle between
+      available languages (English and Vietnamese).
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where is my game history stored?</div>
+    <p class="faq-a">
+      Game history is stored locally on your device using iOS UserDefaults.
+      It is never uploaded to any server. Uninstalling the app will permanently
+      delete your history.
+    </p>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-box" id="contact">
+    <h2>Still need help?</h2>
+    <p>
+      If your question isn't answered above, or you'd like to report a bug or
+      share feedback, email us directly. We read every message.
+    </p>
+    <a href="mailto:dragonfish.minmenstudio@gmail.com" class="btn-contact">
+      dragonfish.minmenstudio@gmail.com
+    </a>
+  </div>
+
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <div class="footer-logo">DragonFish</div>
+        <p>The strongest Xiangqi engine on iPhone.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 MinMen Studio. All rights reserved.</span>
+      <ul class="footer-legal">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="support.html">Support</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DragonFish — Xiangqi Engine for iOS</title>
+  <meta name="description" content="DragonFish brings a world-class Xiangqi engine to your iPhone. Train against powerful AI, analyse positions, and capture board photos — all offline." />
+  <meta property="og:title" content="DragonFish — Xiangqi Engine for iOS" />
+  <meta property="og:description" content="The strongest Xiangqi (Chinese Chess) engine on your phone." />
+  <meta property="og:image" content="assets/icon/AppIcon-1024.png" />
+  <meta name="theme-color" content="#0f0803" />
+  <link rel="icon" type="image/png" href="assets/icon/AppIcon-1024.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="assets/icon/AppIcon-1024.png" alt="DragonFish icon" />
+    <span class="nav-brand-name">DragonFish</span>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-hide-sm"><a href="#features">Features</a></li>
+    <li class="nav-hide-sm"><a href="#engine">Engine</a></li>
+    <li><a href="support.html">Support</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="#download" class="nav-cta">Download</a></li>
+  </ul>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="home">
+  <div class="hero-glow-red"></div>
+  <div class="hero-glow-gold"></div>
+
+  <div class="hero-inner">
+    <!-- Content -->
+    <div class="hero-content">
+      <img src="assets/icon/AppIcon-1024.png" alt="DragonFish" class="hero-icon" />
+
+      <p class="hero-tagline">Cờ Tướng · Xiangqi</p>
+      <h1 class="hero-title">DragonFish</h1>
+
+      <!-- Decorative divider matching app style -->
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
+      </div>
+
+      <p class="hero-desc">
+        The strongest Xiangqi engine on your iPhone —
+        built for offline play, deep analysis, and instant board recognition.
+        No internet required.
+      </p>
+
+      <div class="cta-wrap" id="download">
+        <a href="#" class="btn-appstore" aria-label="Download on the App Store — coming soon">
+          <!-- Apple logo SVG -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span class="btn-store-text">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </span>
+        </a>
+        <span class="badge-soon">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="hero-mockup">
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="assets/screenshots/homepage.png" alt="DragonFish home screen" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURES ====== -->
+<section class="features" id="features">
+  <div class="section-header">
+    <p class="section-eyebrow">What's inside</p>
+    <h2 class="section-title">Three modes, one engine</h2>
+  </div>
+
+  <div class="features-grid">
+
+    <!-- Train -->
+    <article class="feature-card card-train">
+      <div class="feature-card-body">
+        <div class="feature-circle" aria-hidden="true">帥</div>
+        <div class="feature-sub">Train</div>
+        <h3>Luyện Tập</h3>
+        <p>
+          Play against a world-class AI engine at any skill level.
+          Undo, redo, flip the board, and edit positions freely — all offline.
+        </p>
+      </div>
+      <div class="feature-screenshot-wrap">
+        <img src="assets/screenshots/training.png"
+             alt="Training mode screenshot"
+             class="feature-screenshot"
+             loading="lazy" />
+      </div>
+    </article>
+
+    <!-- Capture -->
+    <article class="feature-card card-capture">
+      <div class="feature-card-body">
+        <div class="feature-circle" aria-hidden="true">
+          <!-- Camera icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round"
+               width="30" height="30" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div class="feature-sub">Capture · Beta</div>
+        <h3>Chụp Bàn Cờ</h3>
+        <p>
+          Point your camera at any physical board. DragonFish recognises all
+          pieces with on-device AI (YOLOv8) — no cloud, no subscription.
+        </p>
+      </div>
+      <div class="feature-screenshot-wrap">
+        <img src="assets/screenshots/editmode.png"
+             alt="Board edit mode screenshot"
+             class="feature-screenshot"
+             loading="lazy" />
+      </div>
+    </article>
+
+    <!-- Analysis -->
+    <article class="feature-card card-analysis">
+      <div class="feature-card-body">
+        <div class="feature-circle" aria-hidden="true">
+          <!-- Waveform icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round"
+               width="30" height="30" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="feature-sub">Deep Analysis</div>
+        <h3>Phân Tích</h3>
+        <p>
+          Two-sided engine analysis with best-move arrows, centipawn scores,
+          and per-side elapsed clocks. Understand every position deeply.
+        </p>
+      </div>
+      <div class="feature-screenshot-wrap">
+        <img src="assets/screenshots/analysis.png"
+             alt="Analysis mode screenshot"
+             class="feature-screenshot"
+             loading="lazy" />
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ====== ENGINE ====== -->
+<section class="engine" id="engine">
+  <div class="engine-inner">
+    <span class="engine-badge">DragonFish Engine</span>
+
+    <h2>World-class engine.<br />Runs entirely on your phone.</h2>
+
+    <p>
+      DragonFish runs a <strong>state-of-the-art NNUE engine</strong>
+      natively on your iPhone — no server, no account required.
+      Your games and positions never leave your device.
+    </p>
+    <p>
+      The NNUE neural network runs at full speed on iPhone's CPU and Neural Engine,
+      reaching depths that rival dedicated desktop software.
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-value">78k+</div>
+        <div class="stat-label">Nodes per second</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">17+</div>
+        <div class="stat-label">Search depth</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Offline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <div class="footer-logo">DragonFish</div>
+        <p>The strongest Xiangqi engine on iPhone. Built with passion for Cờ Tướng.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h4>App</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#engine">Engine</a></li>
+          <li><a href="#download">Download</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-nav" aria-label="Legal navigation">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="support.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 MinMen Studio. All rights reserved.</span>
+      <ul class="footer-legal">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="support.html">Support</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
