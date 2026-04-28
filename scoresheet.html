@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thư Viện Biên Bản — DragonFish</title>
+  <meta name="description" content="Tải biên bản ván cờ tướng về DragonFish. Kho biên bản từ các giải đấu lớn." />
+  <meta name="theme-color" content="#0f0803" />
+  <link rel="icon" type="image/png" href="assets/icon/AppIcon-1024.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ── Score-sheet page specific styles ── */
+
+    .ss-search-bar {
+      max-width: 900px;
+      margin: 0 auto 28px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .ss-search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(222,184,135,0.15);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .ss-search-input::placeholder { color: rgba(255,255,255,0.28); }
+    .ss-search-input:focus { border-color: rgba(222,184,135,0.40); }
+
+    .ss-filter-select {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(222,184,135,0.15);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.70);
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+    }
+    .ss-filter-select option { background: #1a0c04; }
+
+    .ss-count {
+      font-size: 12px;
+      color: rgba(255,255,255,0.30);
+      margin-left: auto;
+    }
+
+    /* ── Card grid ── */
+    .ss-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ss-card {
+      border: 1px solid rgba(222,184,135,0.10);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.025);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .ss-card:hover { border-color: rgba(222,184,135,0.22); }
+
+    .ss-card-header {
+      padding: 18px 20px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px 16px;
+      align-items: start;
+      user-select: none;
+    }
+
+    .ss-tournament {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold-dim);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .ss-round {
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.06);
+      padding: 1px 7px;
+      border-radius: 99px;
+      letter-spacing: 0;
+      text-transform: none;
+      vertical-align: middle;
+    }
+
+    .ss-players {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ss-player-red  { font-size: 15px; font-weight: 600; color: #fff; }
+    .ss-player-vs   { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .ss-player-black { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.75); }
+
+    .ss-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ss-date {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .ss-result {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 99px;
+    }
+    .ss-result-red   { background: rgba(180,30,30,0.30); color: #f59090; border: 1px solid rgba(200,50,50,0.30); }
+    .ss-result-black { background: rgba(50,50,80,0.40);  color: #9ab0d8; border: 1px solid rgba(80,80,140,0.35); }
+    .ss-result-draw  { background: rgba(100,80,20,0.35); color: #ddc96e; border: 1px solid rgba(160,130,40,0.30); }
+
+    /* right column: chevron + move count */
+    .ss-card-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .ss-chevron {
+      width: 22px; height: 22px;
+      color: rgba(255,255,255,0.25);
+      transition: transform 0.25s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .ss-card.open .ss-chevron { transform: rotate(180deg); color: var(--gold-dim); }
+    .ss-move-count {
+      font-size: 11px;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ── Notation body (collapsed by default) ── */
+    .ss-card-body {
+      display: none;
+      border-top: 1px solid rgba(222,184,135,0.08);
+    }
+    .ss-card.open .ss-card-body { display: block; }
+
+    .ss-notation-wrap {
+      padding: 16px 20px 6px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .ss-notation {
+      flex: 1;
+      font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.9;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .ss-notation-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .ss-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.18s, border-color 0.18s;
+      text-decoration: none;
+      white-space: nowrap;
+      background: none;
+      color: inherit;
+    }
+
+    .ss-btn-copy {
+      background: rgba(222,184,135,0.10);
+      border-color: rgba(222,184,135,0.22);
+      color: var(--gold);
+    }
+    .ss-btn-copy:hover { background: rgba(222,184,135,0.20); border-color: rgba(222,184,135,0.38); }
+    .ss-btn-copy.copied { background: rgba(50,150,80,0.20); border-color: rgba(50,180,80,0.35); color: #70d490; }
+
+    .ss-btn-dl {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.55);
+    }
+    .ss-btn-dl:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.20); color: #fff; }
+
+    .ss-card-footer {
+      padding: 12px 20px 14px;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.28);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── Empty state ── */
+    .ss-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255,255,255,0.30);
+      font-size: 14px;
+    }
+
+    /* ── App CTA banner ── */
+    .ss-app-banner {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 22px 28px;
+      border: 1px solid rgba(222,184,135,0.16);
+      border-radius: 18px;
+      background: rgba(222,184,135,0.04);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .ss-app-banner-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .ss-app-banner-text { flex: 1; min-width: 180px; }
+    .ss-app-banner-text strong { display: block; color: #fff; font-size: 14px; margin-bottom: 4px; }
+    .ss-app-banner-text span { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .ss-app-banner a {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: var(--gold-faint);
+      border: 1px solid rgba(222,184,135,0.28);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.18s;
+    }
+    .ss-app-banner a:hover { background: rgba(222,184,135,0.15); text-decoration: none; }
+
+    /* ── Page content wrapper ── */
+    .ss-content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 5% 100px;
+    }
+
+    @media (max-width: 600px) {
+      .ss-notation-wrap { flex-direction: column; }
+      .ss-notation-actions { flex-direction: row; flex-wrap: wrap; }
+      .ss-card-header { grid-template-columns: 1fr auto; }
+    }
+  </style>
+</head>
+<body data-page="scoresheet">
+
+<!-- ====== NAVBAR ====== -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="assets/icon/AppIcon-1024.png" alt="DragonFish icon" />
+  </a>
+  <ul class="nav-links">
+    <li class="nav-hide-sm"><a href="index.html">Trang Chủ</a></li>
+    <li class="nav-hide-sm"><a href="support.html">Hỗ Trợ</a></li>
+    <li><a href="index.html#download" class="nav-cta">Tải App</a></li>
+  </ul>
+</nav>
+
+<!-- ====== PAGE HERO ====== -->
+<div class="page-hero">
+  <h1>Thư Viện Biên Bản</h1>
+  <p>Biên bản ván đấu từ các giải cờ tướng — tải về DragonFish để phân tích</p>
+</div>
+
+<!-- ====== CONTENT ====== -->
+<div class="ss-content">
+
+  <!-- App banner -->
+  <div class="ss-app-banner">
+    <img src="assets/icon/AppIcon-1024.png" alt="DragonFish" class="ss-app-banner-icon" />
+    <div class="ss-app-banner-text">
+      <strong>Phân tích trên DragonFish</strong>
+      <span>Nhấn "Sao chép" trên biên bản bất kỳ → mở app → Biên Bản → Mới → dán vào.</span>
+    </div>
+    <a href="https://apps.apple.com/us/app/dragonfish/id6761652260" target="_blank" rel="noopener">
+      Tải DragonFish
+    </a>
+  </div>
+
+  <!-- Search + filter -->
+  <div class="ss-search-bar" style="margin-top:36px;">
+    <input class="ss-search-input" id="ss-search"
+           type="search" placeholder="Tìm kỳ thủ hoặc giải đấu…" autocomplete="off" />
+    <select class="ss-filter-select" id="ss-filter-tournament">
+      <option value="">Tất cả giải đấu</option>
+    </select>
+    <span class="ss-count" id="ss-count"></span>
+  </div>
+
+  <!-- Cards -->
+  <div class="ss-grid" id="ss-grid"></div>
+
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <div class="footer-logo">DragonFish</div>
+        <p>The strongest Xiangqi engine on iPhone. Built with passion for Cờ Tướng.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h4>Trang</h4>
+        <ul>
+          <li><a href="index.html">Trang Chủ</a></li>
+          <li><a href="scoresheet.html">Biên Bản</a></li>
+          <li><a href="privacy.html">Chính Sách Riêng Tư</a></li>
+          <li><a href="support.html">Hỗ Trợ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 MinMen Studio. All rights reserved.</span>
+      <ul class="footer-legal">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="support.html">Support</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  DANH SÁCH BIÊN BẢN — thêm ván mới vào mảng GAMES bên dưới ║
+// ║                                                              ║
+// ║  Mỗi ván là một object {}. Các trường:                       ║
+// ║    tournament : tên giải đấu (string)                        ║
+// ║    round      : vòng đấu, tuỳ chọn (string hoặc bỏ qua)     ║
+// ║    red        : tên kỳ thủ cầm quân đỏ                       ║
+// ║    black      : tên kỳ thủ cầm quân đen                      ║
+// ║    date       : ngày tháng "YYYY-MM-DD"                      ║
+// ║    result     : "red" | "black" | "draw"                     ║
+// ║    notation   : biên bản (dùng backtick `...`)               ║
+// ║                 Dòng 1 là tiêu đề, tiếp theo là các nước đi  ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+const GAMES = [
+
+  // ── Thêm ván mới ở ĐÂY (sao chép khối {} bên dưới làm mẫu) ──
+
+  {
+    tournament: "Ngũ Dương Bôi 2026",
+    round: "",
+    red: "Lại Lý Huynh",
+    black: "Lưu Tử Kiện",
+    date: "2026-01-01",
+    result: "red",
+    notation: `Lại Lý Huynh thắng Lưu Tử Kiện - Ngũ Dương Bôi
+1. P2-6 P2-7
+2. M2.3 M8.9
+3. C7.1 M2.3
+4. M8.7 X1-2
+5. X9-8 X2.6
+6. P8-9 X2-3
+7. X8.2 X9-8
+8. P9/1 P7.4
+9. P9-7 X3-2
+10. X8.1 P7-2
+11. M7.6 P2-3
+12. P7-5 P8-7
+13. M3.4 V7.5
+14. M6.5 M3.5
+15. P5.5 S6.5
+16. S4.5 C7.1
+17. C1.1 C7.1
+18. M4.6 P3-2
+19. C1.1 C9.1
+20. X1.5 M9.7
+21. X1-4 X8-6
+22. X4-2 P2/4
+23. P6-4 C7.1
+24. X2.1 M7.5
+25. C5.1 M5.7
+26. X2/2 C7.1
+27. P4-8 M7/6
+28. V3.5 C7.1
+29. P8/1 P7-9
+30. P8-3 M6/8
+31. X2.2 X6.4
+32. P3-2 M8/6
+33. M6.4 M6.5
+34. C5.1 X6-7
+35. C5.1 P9-6
+36. C5.1 V3.5
+37. M4/5 X7-5
+38. M5/4 C3.1
+39. M4.3 X5-4
+40. X2-5 X4-8
+41. P2-1 P2.3
+42. C7.1 V5.3
+43. M3.2 P6/1
+44. S5/4 P2/3
+45. P1-8 V3/1
+46. P8.3 V1/3
+47. X5-9 P2-5
+48. S6.5 P5.3
+49. X9-5 P5-8
+50. M2.4 X8/2
+51. M4/6 P8-4
+52. X5-4 X8-4
+53. P8/2 P6.1
+54. V5/3 P4/1
+55. P8-5 T5-6
+56. P5-4 T6-5
+57. P4-5 T5-6
+58. P5.3 P4.2
+59. P5/2 P4-2
+60. V7.5 P2/5
+61. C9.1 P6/1
+62. C9.1 X4-3
+63. C9-8 X3.1
+64. X4-2 P6-8
+65. P5-4 X3.3
+66. P4.2 T6-5
+67. P4-5 T5-6
+68. P5-4 T6-5
+69. P4-7 V3.5
+70. P7/1 X3-4
+71. M6/4`
+  },
+
+  {
+    tournament: "Ngũ Dương Bôi 2026",
+    round: "",
+    red: "Lại Lý Huynh",
+    black: "Triệu Phàn Vĩ",
+    date: "2026-01-01",
+    result: "red",
+    notation: `Lại Lý Huynh thắng Triệu Phàn Vĩ
+1. P2-6 C7.1
+2. M2.3 M8.7
+3. X1-2 X9-8
+4. X2.4 P8-9
+5. X2-4 P2-4
+6. M8.9 M2.3
+7. C9.1 C3.1
+8. M9.8 V7.5
+9. X9.1 X1.1
+10. P6.4 S6.5
+11. P6-7 X8-6
+12. C3.1 C7.1
+13. X4-3 M7.6
+14. C7.1 V3.1
+15. C7.1 V1.3
+16. M3.4 P4/1
+17. X9-2 M6.4
+18. M4.6 M4.2
+19. S6.5 P9-6
+20. M6.7 P6-3
+21. M8.6 P4.2
+22. X3-8 P3-4
+23. X8/1 Ps.2
+24. P7-5 Pt-6
+25. X8.4 P4-3
+26. X8-7 X1-2
+27. P8-4 P3.6
+28. P4.7 P3/7
+29. X2.8 P6/3
+30. P4-6 P6/1
+31. P6-4 X2.8
+32. S5/6 T5-4
+33. P4/7 T4.1
+34. P4-6 X2/3
+35. C5.1 P3-1
+36. X2/4 P1.3
+37. X2-6 S5.4
+38. X6-7 X2-4
+39. X7.3 T4/1
+40. S6.5`
+  },
+
+  {
+    tournament: "Ngũ Dương Bôi 2026",
+    round: "",
+    red: "Trình Vũ Đông",
+    black: "Lại Lý Huynh",
+    date: "2026-01-01",
+    result: "red",
+    notation: `Trình Vũ Đông thắng Lại Lý Huynh - Ngũ Dương Bôi
+1. C7.1 P2-3
+2. P2-5 V7.5
+3. M8.9 M2.1
+4. X9-8 X1.1
+5. C9.1 X1-4
+6. M2.3 S6.5
+7. M9.8 C7.1
+8. M8.9 P3/1
+9. P8.6 X4.1
+10. X1-2 P8-7
+11. X2.4 P7.4
+12. V3.1 M8.7
+13. C9.1 X9-6
+14. S4.5 X6.4
+15. C9-8 X4.6
+16. P5-9 M1/2
+17. P9.3 X6.4
+18. X8.2 M7.6
+19. P9-4 X6/4
+20. C8.1 X4/5
+21. C8.1 C3.1
+22. C8-7 P3-4
+23. Ct.1 P4-2
+24. M9.8 X4.1
+25. X2.5 S5/6
+26. Cs.1 X4.2
+27. Cs.1 S4.5
+28. X2/6 C7.1
+29. X8.2 X6.2
+30. V7.5 C7-6
+31. X2.3 X6.2
+32. Cs.1 X6-7
+33. Ct.1 X7/1
+34. X2-5 P7/5
+35. X5.1 P7-2
+36. X8.4 X7-5
+37. Cs.1 X5/1
+38. Ct-6`
+  },
+
+]; // ← fim do array (não mover)
+
+// ───────── rendering (não é necessário editar abaixo) ─────────
+
+function resultLabel(r) {
+  if (r === "red")   return { text: "Đỏ thắng",  cls: "ss-result-red" };
+  if (r === "black") return { text: "Đen thắng", cls: "ss-result-black" };
+  return { text: "Hòa", cls: "ss-result-draw" };
+}
+
+function moveCount(notation) {
+  const lines = notation.split("\n").filter(l => /^\d+\./.test(l.trim()));
+  if (!lines.length) return "";
+  const last = lines[lines.length - 1].trim();
+  const n = parseInt(last);
+  const halves = last.replace(/^\d+\.\s*/, "").trim().split(/\s+/).filter(Boolean).length;
+  return (n - 1) * 2 + halves + " nước";
+}
+
+function formatDate(d) {
+  if (!d) return "";
+  const [y, m, day] = d.split("-");
+  return `${day}/${m}/${y}`;
+}
+
+function buildCard(game, idx) {
+  const rl = resultLabel(game.result);
+  const mc = moveCount(game.notation);
+  const roundBadge = game.round
+    ? `<span class="ss-round">${game.round}</span>` : "";
+
+  return `
+<div class="ss-card" id="card-${idx}">
+  <div class="ss-card-header" onclick="toggleCard(${idx})">
+    <div>
+      <div class="ss-tournament">${game.tournament}${roundBadge}</div>
+      <div class="ss-players">
+        <span class="ss-player-red">${game.red}</span>
+        <span class="ss-player-vs">⚔</span>
+        <span class="ss-player-black">${game.black}</span>
+      </div>
+      <div class="ss-meta">
+        <span class="ss-date">${formatDate(game.date)}</span>
+        <span class="ss-result ${rl.cls}">${rl.text}</span>
+      </div>
+    </div>
+    <div class="ss-card-right">
+      <svg class="ss-chevron" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+      <span class="ss-move-count">${mc}</span>
+    </div>
+  </div>
+  <div class="ss-card-body">
+    <div class="ss-notation-wrap">
+      <pre class="ss-notation" id="notation-${idx}">${escHtml(game.notation)}</pre>
+      <div class="ss-notation-actions">
+        <button class="ss-btn ss-btn-copy" onclick="copyNotation(${idx}, this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Sao chép
+        </button>
+        <button class="ss-btn ss-btn-dl" onclick="downloadNotation(${idx})">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Tải .txt
+        </button>
+      </div>
+    </div>
+    <div class="ss-card-footer">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      Để dùng trong app: Sao chép → DragonFish → Biên Bản → Mới → Dán → Phân Tích
+    </div>
+  </div>
+</div>`;
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function toggleCard(idx) {
+  const card = document.getElementById("card-" + idx);
+  card.classList.toggle("open");
+}
+
+function copyNotation(idx, btn) {
+  const text = GAMES[idx].notation;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add("copied");
+    btn.innerHTML = btn.innerHTML.replace("Sao chép", "Đã sao chép!");
+    setTimeout(() => {
+      btn.classList.remove("copied");
+      btn.innerHTML = btn.innerHTML.replace("Đã sao chép!", "Sao chép");
+    }, 2000);
+  });
+}
+
+function downloadNotation(idx) {
+  const g = GAMES[idx];
+  const filename = `${g.red.replace(/\s+/g,"-")}_vs_${g.black.replace(/\s+/g,"-")}_${g.date}.txt`;
+  const blob = new Blob([g.notation], { type: "text/plain;charset=utf-8" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── Search & filter ──
+
+function getFilteredGames(query, tournament) {
+  const q = query.toLowerCase();
+  return GAMES
+    .map((g, i) => ({ g, i }))
+    .filter(({ g }) => {
+      const matchTour = !tournament || g.tournament === tournament;
+      const matchQ    = !q
+        || g.red.toLowerCase().includes(q)
+        || g.black.toLowerCase().includes(q)
+        || g.tournament.toLowerCase().includes(q)
+        || (g.round || "").toLowerCase().includes(q);
+      return matchTour && matchQ;
+    })
+    .sort((a, b) => (b.g.date || "").localeCompare(a.g.date || ""));
+}
+
+function render() {
+  const q = document.getElementById("ss-search").value;
+  const t = document.getElementById("ss-filter-tournament").value;
+  const filtered = getFilteredGames(q, t);
+  const grid = document.getElementById("ss-grid");
+  const countEl = document.getElementById("ss-count");
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="ss-empty">Không tìm thấy biên bản nào.</div>';
+    countEl.textContent = "0 ván";
+    return;
+  }
+
+  grid.innerHTML = filtered.map(({ g, i }) => buildCard(g, i)).join("");
+  countEl.textContent = `${filtered.length} ván`;
+}
+
+function populateTournamentFilter() {
+  const sel  = document.getElementById("ss-filter-tournament");
+  const seen = new Set();
+  GAMES.forEach(g => {
+    if (!seen.has(g.tournament)) {
+      seen.add(g.tournament);
+      const opt = document.createElement("option");
+      opt.value = g.tournament;
+      opt.textContent = g.tournament;
+      sel.appendChild(opt);
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  populateTournamentFilter();
+  render();
+  document.getElementById("ss-search").addEventListener("input", render);
+  document.getElementById("ss-filter-tournament").addEventListener("change", render);
+});
+</script>
+</body>
+</html>
