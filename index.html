@@ -69,6 +69,22 @@
             <strong data-i18n="hero.app_store">App Store</strong>
           </span>
         </a>
+
+        <!-- Google Play "coming soon" placeholder. Rendered as a span (not an
+             anchor) so it's visibly non-clickable until the Android app ships
+             on Play Store. Swap to <a href="..."> once Production track is live. -->
+        <span class="btn-appstore btn-appstore-soon"
+              aria-label="DragonFish for Android is coming soon to Google Play"
+              aria-disabled="true">
+          <!-- Google Play logo SVG -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.31-3.319l2.443 1.412c.766.442.766 1.55 0 1.992l-2.443 1.412L15.092 12l2.717-2.612zM5.864 2.658L16.802 8.99l-2.302 2.302L5.864 2.658z"/>
+          </svg>
+          <span class="btn-store-text">
+            <small data-i18n="hero.coming_soon">Coming soon to</small>
+            <strong data-i18n="hero.play_store">Google Play</strong>
+          </span>
+        </span>
       </div>
     </div>
 

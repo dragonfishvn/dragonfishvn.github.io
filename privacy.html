@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — DragonFish</title>
-  <meta name="description" content="Privacy Policy for DragonFish — Xiangqi Engine iOS app." />
+  <meta name="description" content="Privacy Policy for DragonFish — Xiangqi Engine for iOS and Android." />
   <meta name="theme-color" content="#0f0803" />
   <link rel="icon" type="image/png" href="assets/icon/AppIcon-1024.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -27,41 +27,62 @@
 <!-- ====== PAGE HERO ====== -->
 <div class="page-hero">
   <h1 data-i18n="privacy.hero.title">Privacy Policy</h1>
-  <p data-i18n="privacy.hero.sub">Last updated: April 7, 2025</p>
+  <p data-i18n="privacy.hero.sub">Last updated: May 16, 2026</p>
 </div>
 
 <!-- ====== CONTENT ====== -->
 <div class="page-content">
 
   <p data-i18n="privacy.intro">
-    MinMen Studio ("we", "us", or "our") operates the DragonFish mobile application (the "App").
-    This Privacy Policy explains what information is collected when you use the App, how it is used,
-    and your choices regarding that information.
+    MinMen Studio ("we", "us", or "our") operates the DragonFish mobile application (the "App")
+    on iOS and Android. This Privacy Policy explains what information is collected when you use
+    the App, how it is used, and your choices regarding that information.
   </p>
 
   <h2 data-i18n="privacy.h1">1. Information We Collect</h2>
-  <p data-i18n="privacy.1.p1">
-    DragonFish is designed to work entirely offline and collects no personally identifiable
-    information. We do not collect, store, or transmit your name, email address, location,
-    or any other personal data to our servers.
+  <p data-i18n-html="privacy.1.p1">
+    DragonFish is designed to work offline for core gameplay. Game data — moves, positions, history,
+    hearts balance, and settings — is stored <strong>locally on your device only</strong>
+    (iOS UserDefaults / Android SharedPreferences). It is never transmitted to our servers.
   </p>
-  <p data-i18n-html="privacy.1.p2">
-    All game data (moves, positions, history, hearts balance) is stored <strong>locally on your
-    device only</strong> via iOS UserDefaults. It is never transmitted to any server.
+  <p data-i18n="privacy.1.p2">
+    On the Android version, the App uses the following Google services for app health, abuse prevention,
+    and ad delivery. No personally identifiable information (name, email, exact location) is collected.
   </p>
+  <ul>
+    <li data-i18n-html="privacy.1.li1">
+      <strong>Firebase Analytics</strong> — anonymous usage events such as app launches and out-of-hearts
+      paywall hits. Events are tagged only with an automatically-generated app instance ID.
+    </li>
+    <li data-i18n-html="privacy.1.li2">
+      <strong>Firebase Crashlytics</strong> — crash reports and stack traces sent when the App crashes,
+      to help us diagnose and fix bugs.
+    </li>
+    <li data-i18n-html="privacy.1.li3">
+      <strong>Cloud Firestore</strong> — stores a one-way SHA-256 hash of the device's Android App Set ID
+      to detect when the same device reinstalls the App. This prevents abuse of the free starter hearts.
+      The hash cannot be reversed to identify your device or you personally.
+    </li>
+  </ul>
 
   <h2 data-i18n="privacy.h2">2. In-App Purchases</h2>
   <p data-i18n-html="privacy.2.p">
-    DragonFish offers optional in-app purchases (heart packages) processed entirely by Apple's
-    App Store. We do not receive or store any payment or financial information. Apple's
-    <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-    governs all purchase transactions.
+    DragonFish offers optional in-app purchases (heart packages and engine unlock). On iOS, purchases
+    are processed by Apple's App Store. On Android, purchases are processed by Google Play Billing.
+    We do not receive or store any payment or financial information. See
+    <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy</a>
+    and
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>
+    for details on how each platform handles purchase data.
   </p>
 
-  <h2 data-i18n="privacy.h3">3. Third-Party Services</h2>
-  <p data-i18n="privacy.3.p">
-    DragonFish does not integrate any third-party analytics, advertising, or tracking SDKs.
-    No data is shared with third parties.
+  <h2 data-i18n="privacy.h3">3. Advertising</h2>
+  <p data-i18n-html="privacy.3.p">
+    On the Android version, the App may display rewarded video ads via
+    <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener noreferrer">Google AdMob</a>
+    if you choose to watch them in exchange for in-game rewards (extra hearts). AdMob may collect and use
+    the device's Advertising ID for ad serving and measurement. You can reset or limit ad personalization
+    in your device Settings → Privacy → Ads. The iOS version does not currently display ads.
   </p>
 
   <h2 data-i18n="privacy.h4">4. Children's Privacy</h2>
@@ -74,28 +95,43 @@
 
   <h2 data-i18n="privacy.h5">5. Data Retention</h2>
   <p data-i18n="privacy.5.p">
-    We do not retain any personal data on our servers. All data stored by the App lives
-    locally on your device and is deleted when you uninstall the App.
+    Local device data is deleted when you uninstall the App. Firebase Analytics events are retained
+    for the period configured by Google (default 14 months) before being aggregated. Crash reports
+    are retained for 90 days. Anti-abuse install records (the hashed App Set ID described in Section 1)
+    are retained for as long as they remain useful for abuse-prevention purposes. You may request
+    deletion of data tied to your device at any time — see Section 7.
   </p>
 
   <h2 data-i18n="privacy.h6">6. Security</h2>
   <p data-i18n="privacy.6.p">
-    Because all data is stored locally on your device and never transmitted, your information
-    is protected by your device's own security mechanisms (Face ID, passcode, etc.).
+    All data transmitted between the App and our cloud providers is encrypted in transit
+    (HTTPS / TLS). Local data on your device is protected by your device's own security mechanisms
+    (Face ID, fingerprint, passcode).
   </p>
 
-  <h2 data-i18n="privacy.h7">7. Changes to This Policy</h2>
+  <h2 data-i18n="privacy.h7">7. Your Rights &amp; Data Deletion</h2>
   <p data-i18n="privacy.7.p">
+    You have the right to request access to, correction of, or deletion of data we hold that is
+    associated with your device. To make such a request, email us at the address in Section 9
+    with a description of your request. We will respond within 30 days. Most data we collect is
+    anonymous and not tied to a personally-identifying account, so we may need additional information
+    (for example, your device's anonymous Firebase app instance ID) to locate and delete the relevant
+    records.
+  </p>
+
+  <h2 data-i18n="privacy.h8">8. Changes to This Policy</h2>
+  <p data-i18n="privacy.8.p">
     We may update this Privacy Policy from time to time. Changes will be posted on this page
     with an updated revision date. Continued use of the App after any changes constitutes
     acceptance of the updated policy.
   </p>
 
-  <h2 data-i18n="privacy.h8">8. Contact Us</h2>
-  <p data-i18n="privacy.8.p1">
-    If you have any questions or concerns about this Privacy Policy, please contact us at:
+  <h2 data-i18n="privacy.h9">9. Contact Us</h2>
+  <p data-i18n="privacy.9.p1">
+    If you have any questions or concerns about this Privacy Policy, or to make a data request,
+    please contact us at:
   </p>
-  <p data-i18n-html="privacy.8.p2">
+  <p data-i18n-html="privacy.9.p2">
     <strong>MinMen Studio</strong><br />
     Email: <a href="mailto:dragonfish.minmenstudio@gmail.com">dragonfish.minmenstudio@gmail.com</a>
   </p>

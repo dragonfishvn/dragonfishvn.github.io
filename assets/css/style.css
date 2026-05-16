@@ -222,6 +222,23 @@ body {
 
 .btn-appstore svg { width: 22px; height: 22px; fill: var(--gold); flex-shrink: 0; }
 
+/* "Coming soon" Play Store placeholder — same shape as App Store button but
+   visibly non-interactive and dimmed. Swap the modifier class for a real
+   .btn-appstore (or remove this rule) once the Android app ships. */
+.btn-appstore-soon {
+  opacity: 0.55;
+  cursor: default;
+}
+.btn-appstore-soon:hover {
+  /* Override the .btn-appstore:hover lift — non-interactive should stay still. */
+  background: linear-gradient(135deg,
+    rgba(245,210,138,0.13),
+    rgba(199,138,61,0.08));
+  border-color: rgba(222,184,135,0.28);
+  transform: none;
+  box-shadow: none;
+}
+
 .btn-store-text small {
   display: block; font-size: 10px;
   font-weight: 400; letter-spacing: 0.5px;
