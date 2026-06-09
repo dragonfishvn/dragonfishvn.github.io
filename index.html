@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DragonFish — Xiangqi Engine for iOS</title>
-  <meta name="description" content="DragonFish brings a world-class Xiangqi engine to your iPhone. Train against powerful AI, analyse positions, and capture board photos — all offline." />
-  <meta property="og:title" content="DragonFish — Xiangqi Engine for iOS" />
+  <title>DragonFish — Xiangqi Engine for iOS and Android</title>
+  <meta name="description" content="DragonFish brings a world-class Xiangqi engine to iPhone and Android. Train against powerful AI, analyse positions, and capture board photos." />
+  <meta property="og:title" content="DragonFish — Xiangqi Engine for iOS and Android" />
   <meta property="og:description" content="The strongest Xiangqi (Chinese Chess) engine on your phone." />
   <meta property="og:image" content="assets/icon/AppIcon-1024.png" />
   <meta name="theme-color" content="#0f0803" />
@@ -51,9 +51,8 @@
       </div>
 
       <p class="hero-desc" data-i18n="hero.desc">
-        The strongest Xiangqi engine on your iPhone —
-        built for offline play, deep analysis, and instant board recognition.
-        No internet required.
+        The strongest Xiangqi engine on iPhone and Android —
+        built for training, deep analysis, and instant board recognition.
       </p>
 
       <div class="cta-wrap" id="download">
@@ -70,21 +69,18 @@
           </span>
         </a>
 
-        <!-- Google Play "coming soon" placeholder. Rendered as a span (not an
-             anchor) so it's visibly non-clickable until the Android app ships
-             on Play Store. Swap to <a href="..."> once Production track is live. -->
-        <span class="btn-appstore btn-appstore-soon"
-              aria-label="DragonFish for Android is coming soon to Google Play"
-              aria-disabled="true">
+        <a href="https://play.google.com/store/apps/details?id=com.minmenstudio.cotuong"
+           class="btn-appstore" target="_blank" rel="noopener noreferrer"
+           aria-label="Get DragonFish on Google Play">
           <!-- Google Play logo SVG -->
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.31-3.319l2.443 1.412c.766.442.766 1.55 0 1.992l-2.443 1.412L15.092 12l2.717-2.612zM5.864 2.658L16.802 8.99l-2.302 2.302L5.864 2.658z"/>
           </svg>
           <span class="btn-store-text">
-            <small data-i18n="hero.coming_soon">Coming soon to</small>
+            <small data-i18n="hero.download_on">Download on the</small>
             <strong data-i18n="hero.play_store">Google Play</strong>
           </span>
-        </span>
+        </a>
       </div>
     </div>
 
@@ -118,7 +114,7 @@
         <h3>Luyện Tập</h3>
         <p data-i18n="feat.train.desc">
           Play against a world-class AI engine at any skill level.
-          Undo, redo, flip the board, and edit positions freely — all offline.
+          Undo, redo, flip the board, and edit positions freely.
         </p>
       </div>
       <div class="feature-screenshot-wrap">
@@ -144,8 +140,8 @@
         <div class="feature-sub" data-i18n="feat.capture.sub">Capture · Beta</div>
         <h3>Chụp Bàn Cờ</h3>
         <p data-i18n="feat.capture.desc">
-          Point your camera at any physical board. DragonFish recognises all
-          pieces with on-device AI (YOLOv8) — no cloud, no subscription.
+          Point your camera at any physical board. DragonFish recognizes the
+          board directly on your device for fast position setup.
         </p>
       </div>
       <div class="feature-screenshot-wrap">
@@ -190,15 +186,15 @@
   <div class="engine-inner">
     <span class="engine-badge" data-i18n="engine.badge">DragonFish Engine</span>
 
-    <h2 data-i18n-html="engine.title">World-class engine.<br />Runs entirely on your phone.</h2>
+    <h2 data-i18n-html="engine.title">World-class engine.<br />Local and cloud options.</h2>
 
     <p data-i18n-html="engine.p1">
       DragonFish runs a <strong>state-of-the-art NNUE engine</strong>
-      natively on your iPhone — no server, no account required.
-      Your games and positions never leave your device.
+      natively on your device for offline training and analysis. Cloud Engine
+      features require an internet connection.
     </p>
     <p data-i18n="engine.p2">
-      The NNUE neural network runs at full speed on iPhone's CPU and Neural Engine,
+      The local NNUE neural network runs at full speed on supported devices,
       reaching depths that rival dedicated desktop software.
     </p>
 
@@ -212,8 +208,8 @@
         <div class="stat-label" data-i18n="engine.stat2">Search depth</div>
       </div>
       <div class="stat-box">
-        <div class="stat-value">100%</div>
-        <div class="stat-label" data-i18n="engine.stat3">Offline</div>
+        <div class="stat-value">NNUE</div>
+        <div class="stat-label" data-i18n="engine.stat3">Local engine</div>
       </div>
     </div>
   </div>
@@ -225,7 +221,7 @@
     <div class="footer-top">
       <div class="footer-brand-col">
         <div class="footer-logo">DragonFish</div>
-        <p data-i18n="footer.desc">The strongest Xiangqi engine on iPhone. Built with passion for Cờ Tướng.</p>
+        <p data-i18n="footer.desc">The strongest Xiangqi engine on iPhone and Android. Built with passion for Cờ Tướng.</p>
         <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61590666053996"
              target="_blank" rel="noopener noreferrer"

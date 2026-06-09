@@ -38,9 +38,9 @@
   <div class="faq-item">
     <div class="faq-q" data-i18n="faq.1.q">Does DragonFish require an internet connection?</div>
     <p class="faq-a" data-i18n="faq.1.a">
-      No. DragonFish runs entirely offline. The AI engine, board recognition,
-      and all game data are stored locally on your device. You only need a connection
-      to download the app.
+      Core training and local analysis can work offline after installation.
+      Online play, Cloud Engine, account sync, purchases, and other cloud-backed
+      features require an internet connection.
     </p>
   </div>
 
@@ -57,9 +57,9 @@
     <div class="faq-q" data-i18n="faq.3.q">How does the Board Capture (photo recognition) work?</div>
     <p class="faq-a" data-i18n="faq.3.a">
       Tap "Chụp Bàn Cờ" from the home screen and take or upload a photo of a physical
-      Xiangqi board. The app uses an on-device YOLOv8 model to detect pieces, then maps
-      them to board coordinates. For best results, shoot from directly above with even
-      lighting and minimal glare.
+      Xiangqi board. The app recognizes the pieces on your device and maps them to
+      board coordinates. For best results, shoot from directly above with even lighting
+      and minimal glare.
     </p>
   </div>
 
@@ -94,8 +94,8 @@
     <div class="faq-q" data-i18n="faq.7.q">What is the engine strength?</div>
     <p class="faq-a" data-i18n="faq.7.a">
       DragonFish uses a state-of-the-art NNUE engine built specifically for Xiangqi (Chinese Chess).
-      On a real iPhone it achieves around 78,000 nodes per second and reaches depth 17+
-      in 3 seconds. It is significantly stronger than any human player.
+      On supported devices it reaches high search depths quickly and is
+      significantly stronger than any human player.
     </p>
   </div>
 
@@ -120,9 +120,8 @@
   <div class="faq-item">
     <div class="faq-q" data-i18n="faq.10.q">Where is my game history stored?</div>
     <p class="faq-a" data-i18n="faq.10.a">
-      Game history is stored locally on your device using iOS UserDefaults.
-      It is never uploaded to any server. Uninstalling the app will permanently
-      delete your history.
+      Game history is stored locally on your device. Uninstalling the app will
+      permanently delete your local history.
     </p>
   </div>
 
@@ -146,7 +145,7 @@
     <div class="footer-top">
       <div class="footer-brand-col">
         <div class="footer-logo">DragonFish</div>
-        <p data-i18n="footer.desc.short">The strongest Xiangqi engine on iPhone.</p>
+        <p data-i18n="footer.desc.short">The strongest Xiangqi engine on iPhone and Android.</p>
       </div>
       <nav class="footer-nav" aria-label="Footer navigation">
         <h4 data-i18n="footer.pages">Pages</h4>

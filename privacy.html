@@ -27,7 +27,7 @@
 <!-- ====== PAGE HERO ====== -->
 <div class="page-hero">
   <h1 data-i18n="privacy.hero.title">Privacy Policy</h1>
-  <p data-i18n="privacy.hero.sub">Last updated: May 16, 2026</p>
+  <p data-i18n="privacy.hero.sub">Last updated: June 8, 2026</p>
 </div>
 
 <!-- ====== CONTENT ====== -->
@@ -41,82 +41,77 @@
 
   <h2 data-i18n="privacy.h1">1. Information We Collect</h2>
   <p data-i18n-html="privacy.1.p1">
-    DragonFish is designed to work offline for core gameplay. Game data — moves, positions, history,
-    hearts balance, and settings — is stored <strong>locally on your device only</strong>
-    (iOS UserDefaults / Android SharedPreferences). It is never transmitted to our servers.
+    DragonFish keeps core training and analysis data on your device whenever possible. This includes
+    local game positions, move history, settings, and app preferences.
   </p>
   <p data-i18n="privacy.1.p2">
-    On the Android version, the App uses the following Google services for app health, abuse prevention,
-    and ad delivery. No personally identifiable information (name, email, exact location) is collected.
+    If you sign in, we may receive basic account information from the sign-in provider, such as your user ID,
+    display name, email address, and profile photo. We use this to sync purchases, hearts, online play, and
+    account-based features.
   </p>
   <ul>
     <li data-i18n-html="privacy.1.li1">
-      <strong>Firebase Analytics</strong> — anonymous usage events such as app launches and out-of-hearts
-      paywall hits. Events are tagged only with an automatically-generated app instance ID.
+      <strong>Online play data</strong> — match records, move history, ratings, statistics, and basic profile
+      information needed to run online games.
     </li>
     <li data-i18n-html="privacy.1.li2">
-      <strong>Firebase Crashlytics</strong> — crash reports and stack traces sent when the App crashes,
-      to help us diagnose and fix bugs.
+      <strong>App diagnostics</strong> — crash reports, performance information, and limited usage events
+      that help us find bugs, improve reliability, and prevent abuse.
     </li>
     <li data-i18n-html="privacy.1.li3">
-      <strong>Cloud Firestore</strong> — stores a one-way SHA-256 hash of the device's Android App Set ID
-      to detect when the same device reinstalls the App. This prevents abuse of the free starter hearts.
-      The hash cannot be reversed to identify your device or you personally.
+      <strong>Purchases and entitlement data</strong> — product ownership, hearts balance, and VIP/unlimited
+      status. Payment processing is handled by Apple or Google; we do not receive your card or payment details.
     </li>
   </ul>
 
-  <h2 data-i18n="privacy.h2">2. In-App Purchases</h2>
+  <h2 data-i18n="privacy.h2">2. Board Recognition and Overlay Analysis</h2>
   <p data-i18n-html="privacy.2.p">
-    DragonFish offers optional in-app purchases (heart packages and engine unlock). On iOS, purchases
-    are processed by Apple's App Store. On Android, purchases are processed by Google Play Billing.
-    We do not receive or store any payment or financial information. See
+    Some DragonFish features can recognize a Xiangqi board from a photo or from a screen area selected by you.
+    Images are used only to identify the board position for analysis. We do not store those images or use them
+    outside the App. On Android, the Overlay feature requires explicit screen-capture permission and shows a
+    foreground notification while it is running.
+  </p>
+
+  <h2 data-i18n="privacy.h3">3. In-App Purchases</h2>
+  <p data-i18n-html="privacy.3.p">
+    DragonFish offers optional in-app purchases, including hearts and VIP/unlimited access. On iOS, purchases
+    are processed by Apple's App Store. On Android, purchases are processed by Google Play Billing. We do not
+    receive or store your payment card or financial information. See
     <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy</a>
     and
     <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>
     for details on how each platform handles purchase data.
   </p>
 
-  <h2 data-i18n="privacy.h3">3. Advertising</h2>
-  <p data-i18n-html="privacy.3.p">
-    On the Android version, the App may display rewarded video ads via
-    <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener noreferrer">Google AdMob</a>
-    if you choose to watch them in exchange for in-game rewards (extra hearts). AdMob may collect and use
-    the device's Advertising ID for ad serving and measurement. You can reset or limit ad personalization
-    in your device Settings → Privacy → Ads. The iOS version does not currently display ads.
-  </p>
-
-  <h2 data-i18n="privacy.h4">4. Children's Privacy</h2>
+  <h2 data-i18n="privacy.h4">4. Acceptable Use</h2>
   <p data-i18n="privacy.4.p">
-    The App is not directed to children under 13 years of age. We do not knowingly collect
-    personal information from children under 13. If you are a parent or guardian and believe
-    your child has provided personal information, please contact us at the address below and
-    we will take steps to delete such information.
+    DragonFish is provided for learning, training, analysis, and personal study of Xiangqi. You are responsible
+    for using the App in accordance with applicable laws, tournament rules, online platform rules, and fair-play
+    expectations. MinMen Studio is not responsible for misuse of the App, including use in contexts where external
+    assistance is prohibited.
   </p>
 
   <h2 data-i18n="privacy.h5">5. Data Retention</h2>
   <p data-i18n="privacy.5.p">
-    Local device data is deleted when you uninstall the App. Firebase Analytics events are retained
-    for the period configured by Google (default 14 months) before being aggregated. Crash reports
-    are retained for 90 days. Anti-abuse install records (the hashed App Set ID described in Section 1)
-    are retained for as long as they remain useful for abuse-prevention purposes. You may request
-    deletion of data tied to your device at any time — see Section 7.
+    Local device data is deleted when you uninstall the App. Account data, online play records, purchase
+    entitlement records, and support messages are retained for as long as needed to provide the App,
+    restore purchases, maintain fair play, meet legal obligations, and resolve support requests. You may
+    request deletion of data associated with your account or device at any time — see Section 7.
   </p>
 
   <h2 data-i18n="privacy.h6">6. Security</h2>
   <p data-i18n="privacy.6.p">
     All data transmitted between the App and our cloud providers is encrypted in transit
-    (HTTPS / TLS). Local data on your device is protected by your device's own security mechanisms
-    (Face ID, fingerprint, passcode).
+    (HTTPS / TLS). Local data on your device is protected by your device's own security mechanisms.
+    We limit access to operational data to what is needed to operate, secure, and improve the App.
   </p>
 
   <h2 data-i18n="privacy.h7">7. Your Rights &amp; Data Deletion</h2>
   <p data-i18n="privacy.7.p">
-    You have the right to request access to, correction of, or deletion of data we hold that is
-    associated with your device. To make such a request, email us at the address in Section 9
-    with a description of your request. We will respond within 30 days. Most data we collect is
-    anonymous and not tied to a personally-identifying account, so we may need additional information
-    (for example, your device's anonymous Firebase app instance ID) to locate and delete the relevant
-    records.
+    You may request access to, correction of, or deletion of data we hold that is associated with you.
+    To make a request, email us at the address below with a description of your request. We will respond
+    within 30 days. We may need information such as your account email or app identifier to locate the
+    relevant records.
   </p>
 
   <h2 data-i18n="privacy.h8">8. Changes to This Policy</h2>
@@ -144,7 +139,7 @@
     <div class="footer-top">
       <div class="footer-brand-col">
         <div class="footer-logo">DragonFish</div>
-        <p data-i18n="footer.desc.short">The strongest Xiangqi engine on iPhone.</p>
+        <p data-i18n="footer.desc.short">The strongest Xiangqi engine on iPhone and Android.</p>
       </div>
       <nav class="footer-nav" aria-label="Footer navigation">
         <h4 data-i18n="footer.pages">Pages</h4>
